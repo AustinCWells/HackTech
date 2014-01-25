@@ -241,3 +241,9 @@ bt {
 	font-size: 25px;
 	color: #1abc9c;
 }
+
+/* google maps styling */
+ #map_canvas {
+        width: 1000px;
+        height: 600px;
+      }

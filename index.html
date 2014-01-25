@@ -20,6 +20,21 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="assets/js/hover.zoom.js"></script>
     <script src="assets/js/hover.zoom.conf.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+     <!-- Scripting for google maps --> 
+      <script>
+      function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+          center: new google.maps.LatLng(39.8282, -98.5795),
+          zoom: 4,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(map_canvas, map_options)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -32,39 +47,40 @@
 
     <!-- Static navbar -->
     <div class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-      	<div class="col-lg-4">
-      		<div class="btn-group">
-   				 	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Dropdown
-      				<span class="caret"></span>
-    			</button>
-    			<ul class="dropdown-menu">
-      				<li><a href="#">Dropdown link</a></li>
-     				 <li><a href="#">Dropdown link</a></li>
-   				 </ul>
-  			</div>
-         </div>
+      	<div class="container">
+	      	<div class="col-lg-4">
+	      		<div class="btn-group">
+	   				 	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Dropdown
+	      				<span class="caret"></span>
+	    			</button>
+	    			<ul class="dropdown-menu">
+	      				<li><a href="#">Dropdown link</a></li>
+	     				 <li><a href="#">Dropdown link</a></li>
+	   				 </ul>
+	  			</div>
+	         </div>
 
-         <div class="col-lg-4">
-         	<div class="navbar-header">
-         	<img src="assets/img/logo_whisper_opt.png"></div>
-         		
-  		</div>
+	        <div class="col-lg-4">
+	         	<div class="navbar-header">
+	         		<img src="assets/img/logo_whisper_opt.png">
+	         	</div>	
+	  		</div>
 
-  		<div class="col-lg-4">
-          		<div class="pull-right navbar-header">
-         			<div height: '400px'></div>
-          				<form class="form-inline" role="form">
- 							 <div class="form-group">
-    						<label class="sr-only" for="textentry"></label>
-    						<input type="text" class="form-control" id="textentry" placeholder="Enter Tag or Keyword"></div>
- 			 				<button type="submit" class="btn btn-xs">
- 			 					<span class="glyphicon glyphicon-search">
- 			 					</span> 
- 			 				</button>
-				 		</form>
- 				 	</div>	
- 		</div>
+	  		<div class="col-lg-4">
+	      		<div class="pull-right navbar-header">
+	     			<div height: '400px'></div>
+	  				<form class="form-inline" role="form">
+							<div class="form-group">
+							<label class="sr-only" for="textentry"></label>
+							<input type="text" class="form-control" id="textentry" placeholder="Enter Tag or Keyword">
+						</div>
+			 				<button type="submit" class="btn btn-xs">
+			 					<span class="glyphicon glyphicon-search">
+			 					</span> 
+			 				</button>
+			 		</form>
+				</div>	
+	 		</div>
       	</div>
     </div>
 
@@ -72,10 +88,8 @@
 	<div id="ww">
 	    <div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2 centered">
-					<img src="assets/img/user.png" alt="Stanley">
-					<h1>A Global Perspective</h1>
-					<p>Have you ever wondered how your thoughts compare to those around you? well now, using the social media website Whisper, you can see people around you and across the nation that have the same thoughts, likes, and tendencies as you</p>
+				<div class="col-lg-12 centered">
+					  <div id="map_canvas"></div>
 					
 				
 				</div><!-- /col-lg-8 -->
