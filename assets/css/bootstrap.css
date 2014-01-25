@@ -755,7 +755,7 @@ code {
 
 pre {
   display: block;
-  padding: 9.5px;
+  padding: 10px;
   margin: 0 0 10px;
   font-size: 13px;
   line-height: 1.428571429;
@@ -782,10 +782,10 @@ pre code {
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .container:before,
@@ -810,19 +810,19 @@ pre code {
 
 @media (min-width: 768px) {
   .container {
-    width: 750px;
+    width: 100%;
   }
 }
 
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 100%;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 100%;
   }
 }
 
