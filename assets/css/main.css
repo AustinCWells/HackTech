@@ -28,9 +28,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 35px;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	font-size: 70px;
+	margin-top: 70px;
+	margin-bottom: 50px;
 }
 
 
@@ -90,8 +90,8 @@ a:after {
 }
 
 .navbar-inverse {
-	padding-bottom: 0px;
-	padding-top: 0px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 }
 
 .navbar-inverse {
@@ -108,7 +108,7 @@ a:after {
 }
 
 .navbar-brand {
-	font-weight: 200;
+	font-weight: 400;
 	font-size: 20px;
 	letter-spacing: 2px;
 }
