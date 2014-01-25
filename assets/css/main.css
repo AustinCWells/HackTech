@@ -11,8 +11,9 @@
 
 body {
   	background-color: #533354;
-  	font-family: "Helvetica Neue" ,Helvetica,Arial,sans serif;
+  	font-family: Georgia, 'Times New Roman', serif;
     font-weight: 400;
+    font-style: italic;
     font-size: 14px;
     color: #555;
 
@@ -22,8 +23,9 @@ body {
 
 /* Titles */
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Helvetica Neue" ,Helvetica,Arial,sans serif;
+	font-family: Georgia, 'Times New Roman', serif;
     font-weight: 400;
+    font-style: italic;
     color: #333;
 }
 
