@@ -1922,10 +1922,10 @@ output {
 }
 
 .form-control {
-  display: block;
-  width: 170px;
+  display: ;
+  width: 170;
   height: 34px;
-  padding: 0px 16px;
+  padding: 0px 6px;
   font-size: 14px;
   line-height: 1.428571429;
   color: white;
