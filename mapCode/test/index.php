@@ -8,7 +8,11 @@
       }
     </style>
     <script src="http://maps.googleapis.com/maps/api/js?libraries=geometry,visualization&sensor=false"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+	</script>
+
      <script>
+    
     /* global variables for access */ 
     var geocoder;
     var map;
@@ -25,7 +29,7 @@
 
       /* send information for processing from Wisper API */
       var hits = getValues(info.keyword); 
-
+      console.log(hits);
       /* initialize map*/
       map.setZoom(parseInt(info.zoom)); 
       var latLong = getLatLong(info.location);
@@ -39,6 +43,7 @@
     function placeHotSpots(hits)
     {
       for (index = 0; index < hits.length; ++index) {
+        console.log(hits[index]);
         codeHeatMap(hits[index]);
 }
     }
@@ -59,16 +64,31 @@
       return parsedResponse.results[0].geometry.location; 
      }
 
-     /* function to call values from wisper API */ 
+     /* function to call values from whisper API */ 
      function getValues(keyword)
      {
-      var hits = new Array(); 
-      hits[0] = "New Orleans, Louisiana";
-      hits[1] = "Dallas, Texas";
-      hits[2] = "Austin, Texas";
-      hits[3] = "Seattle, Washington"; 
-
-      return hits; 
+     	var hits = new Array();
+     	var serverContents;
+      $.ajaxSetup({async:false});
+      $.post("fetch.php", {query: keyword}, function(result)
+      {
+        serverContents = jQuery.parseJSON(result);
+      });
+      // $.ajax({
+      // 		type:"POST",
+      // 		url:"fetch.php",
+      // 		data:{query: keyword},
+      //     dataType:"json",
+      //     async:false,
+      // 		success:function(result){
+      // 		  serverContents = jQuery.parseJSON(result);
+      // 		}      		
+      // 	});
+      	for(var key in serverContents)
+      		hits.push(serverContents[key]);
+      	console.log("Hits: " + hits);
+      	console.log("Server Contents: " + serverContents);
+      	return hits; 
      }
 
 
@@ -85,7 +105,7 @@
 
   function codeHeatMap(address) {
    
-  
+  console.log(address);
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         var weightedLoc ={
