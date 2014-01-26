@@ -134,16 +134,27 @@
 
       function fetchFeed()
        {
-        var hits = new Array(); 
-        hits[0] = "New Orleans, Louisiana";
-        hits[1] = "Dallas, Texas";
-        hits[2] = "Austin, Texas";
-        hits[3] = "Seattle, Washington"; 
-        hits[4] = "Newyork, newyork";
-        hits[5] = "Michigan";
-        hits[6] = "Florida"; 
-        hits[7] = "California";
-        hits[8] = "Oregon";
+        // var hits = new Array(); 
+        // hits[0] = "New Orleans, Louisiana";
+        // hits[1] = "Dallas, Texas";
+        // hits[2] = "Austin, Texas";
+        // hits[3] = "Seattle, Washington"; 
+        // hits[4] = "Newyork, newyork";
+        // hits[5] = "Michigan";
+        // hits[6] = "Florida"; 
+        // hits[7] = "California";
+        // hits[8] = "Oregon";
+      var hits = new Array();
+      var serverContents;
+      $.ajaxSetup({async:false});
+      $.post("liveFeed.php", function(result)
+      {
+        serverContents = jQuery.parseJSON(result);
+      });
+        for(var key in serverContents)
+          hits.push(serverContents[key]);
+        console.log("Hits: " + hits);
+        console.log("Server Contents: " + serverContents);
 
         return hits; 
        }
