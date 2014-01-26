@@ -95,13 +95,13 @@ hr {
     height: 100%}
 .menu h1.logo a {
     font-family: Raleway, Helvetica, Arial, sans-serif;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 800;
     letter-spacing: .15em;
-    line-height: 40px;
+    line-height: px;
     text-transform: uppercase;
     color: white;
-    margin-top: 20px;
+    margin-top: 100px;
 }
 .menu h1.logo a:hover {
     color: gray;
