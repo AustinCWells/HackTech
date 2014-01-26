@@ -1,47 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/ico/favicon.png">
-
-    <title>WhisperWatch</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="assets/css/main.css" rel="stylesheet">
-
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?libraries=geometry,visualization&sensor=false"></script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <!-- script for map -->
-    <script src="assets/js/modernizr.custom.js"></script>
-      <script>
-      function initialize() {
-        var map_canvas = document.getElementById('map_canvas');
-        var map_options = {
-          center: new google.maps.LatLng(39.8282, -98.5795),
-          zoom: 4,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var map = new google.maps.Map(map_canvas, map_options)
+    <style>
+      #map_canvas {
+        width: 1000px;
+        height: 600px;
       }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+    </style>
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=geometry,visualization&sensor=false"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+	</script>
 
      <script>
     
@@ -49,111 +17,10 @@
     var geocoder;
     var map;
     var heatmapData = []; //heat map
-    var heatmap
     var latLngs = new Array(); 
     var markers = [];
     var iterator = 0;
 
-    function standardDemo()
-    {
-        prepData(); 
-    }
-
-    function republicans()
-    {
-      var hits = prepRepublicans(); 
-      placeHotSpots(hits);
-    }
-
-    function marijuana()
-    {
-      var hits = prepMarijuana(); 
-      placeHotSpots(hits);
-    }
-
-    function suicide()
-    {
-      var hits = prepSuicide(); 
-      placeHotSpots(hits);
-    }
-
-    function cake()
-    {
-      var hits = prepCake(); 
-      placeHotSpots(hits);
-    }
-
-    function prepMarijuana()
-    {
-      var hits = new Array();
-        hits[0] = "santa monia, california";
-        hits[1] = "garden city, colorado";
-        hits[2] = "deepwater, new jersey";
-        hits[3] = "mountain view, new jersey";
-        hits[4] = "campton, washington";
-        hits[5] = "woodcrest, california";
-        hits[6] = "richland, washington";
-        hits[7] = "proebstel, washington";
-        hits[8] = "irving, texas";
-        hits[9] = "universal city, california";
-        hits[10] = "Los Angeles, California";
-        hits[11] = "wash, colorado";
-      return hits; 
-    }
-
-    function prepSuicide()
-    {
-      var hits = new Array();
-        hits[0] = "stillwater, minnesota";
-        hits[1] = "charleton heights, alberta";
-        hits[2] = "frederickson, washington";
-        hits[3] = "cloverdale, british columba";
-        hits[4] = "mankato, minnesota";
-        hits[5] = "west side, washington";
-        hits[6] = "speer,wyoming";
-        hits[7] = "city centre, manitoba";
-        hits[8] = "burnaby, british columbia";
-        hits[9] = "seekonk, massachuestts";
-        hits[10] = "speer, wyoming";
-        hits[11] = "mcgonigle, ohio";
-      return hits; 
-    }
-
-    function prepCake()
-    {
-      var hits = new Array();
-        hits[0] = "oakland, tennessee";
-        hits[1] = "north lakes, queensland";
-        hits[2] = "anchorage, alaska";
-        hits[3] = "caddo, alabama";
-        hits[4] = "galena park, texas";
-        hits[5] = "port colborne, ontario";
-        hits[6] = "bayleaf, north carolina";
-        hits[7] = "swan west, virginia";
-        hits[8] = "topeka, indiana";
-        hits[9] = "lakeview ohio";
-        hits[10] = "powell river, british columbia";
-        hits[11] = "chatham, illioois";
-      return hits; 
-    }
-
-    function prepRepublicans()
-    {
-      var hits = new Array();
-        hits[0] = "combridge, massachusetts";
-        hits[1] = "nottingham, maryland";
-        hits[2] = "newyork, newyork";
-        hits[3] = "plymouth, min";
-        hits[4] = "seattle, washington";
-        hits[5] = "San Francisco, California";
-        hits[6] = "boston, massachuesetts";
-        hits[7] = "nottingham, maryland";
-        hits[8] = "albany, oregon";
-        hits[9] = "astoria, oregon";
-        hits[10] = "Los Angeles, California";
-        hits[11] = "Irvine, California";
-      return hits; 
-    }
 
      /* collect data from form for processing */ 
     function prepData(){
@@ -170,6 +37,7 @@
       /* initialize map*/
       map.setZoom(parseInt(info.zoom)); 
       var latLong = getLatLong(info.location);
+      console.log(latLong);
       map.setCenter(new google.maps.LatLng(latLong.lat, latLong.lng));
 
       /* place hot spots */
@@ -181,7 +49,7 @@
       for (index = 0; index < hits.length; ++index) {
         console.log(hits[index]);
         codeHeatMap(hits[index]);
-    }
+}
     }
 
      /*use geocoding to get the lattitude and longitude*/
@@ -293,17 +161,17 @@
 
   
       /* server access got */
-      // var serverContents;
+     	// var serverContents;
       // $.ajaxSetup({async:false});
       // $.post("fetch.php", {query: keyword}, function(result)
       // {
       //   serverContents = jQuery.parseJSON(result);
       // });
-      //  for(var key in serverContents)
-      //    hits.push(serverContents[key]);
-      //  console.log("Hits: " + hits);
-      //  console.log("Server Contents: " + serverContents);
-        return hits; 
+      // 	for(var key in serverContents)
+      // 		hits.push(serverContents[key]);
+      // 	console.log("Hits: " + hits);
+      // 	console.log("Server Contents: " + serverContents);
+       	return hits; 
      }
 
       function drop() {
@@ -327,17 +195,16 @@
 
       function startFeed()
       {
-        
         GO(); 
           window.setTimeout(function(){
             GO()
-      }, 2000);
+      }, 10000);
           window.setTimeout(function(){
             GO()
-      }, 5000);
+      }, 10000);
           window.setTimeout(function(){
             GO()
-      }, 1000);
+      }, 10000);
 
       }
 
@@ -363,12 +230,12 @@
         hits[4] = "Newyork, newyork";
         hits[5] = "Michigan";
         hits[6] = "Florida"; 
-        hits[7] = "alpine, utah";
+        hits[7] = "California";
         hits[8] = "Oregon";
         hits[9] = "Irvine, California";
         hits[10] = "Los Angeles, California";
         hits[11] = "Chicago, Illinois ";
-        hits[12] = "Montana ";
+        hits[12] = "Philadelphia, Pennsylvania ";
         hits[13] = "Phoenix, Arizona";
         hits[14] = "San Jose, California ";
         hits[15] = "Jacksonville, Florida ";
@@ -382,7 +249,7 @@
         hits[23] = "Denver, Colorado ";
         hits[24] = "Nashville, Tennessee ";
         hits[25] = "Baltimore, Maryland ";
-        hits[26] = "montana";
+        hits[26] = "Louisville ";
         hits[27] = "Portland ";
         hits[28] = "Oklahoma city ";
         hits[29] = "Milwaukee";
@@ -479,7 +346,7 @@
           zoom: 4,
           center: latlng
         }
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
       }
 
   function codeHeatMap(address) {
@@ -492,11 +359,11 @@
          weight: 0.5
          }//heat map
         heatmapData.push(weightedLoc); //push info to heat map 
-        heatmap = new google.maps.visualization.HeatmapLayer({
+        var heatmap = new google.maps.visualization.HeatmapLayer({
           data: heatmapData,
           dissipating: false,
           radius: 3,
-          opacity: 0.3,
+          opacity: 0.1,
           map: map
         });
         // var marker = new google.maps.Marker({
@@ -506,7 +373,7 @@
         // }); 
        
       } else {
-        console.log("Geocode was not successful for the following reason: " + status);
+        alert("Geocode was not successful for the following reason: " + status);
       }
     });
 
@@ -542,114 +409,21 @@
       
 google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-
-    
   </head>
-
   <body onload="initialize()">
-	<!-- Menu -->
-	<nav class="menu" id="theMenu">
-		<div class="menu-wrap">
-      <img src="logo_whisper.png" alt="logo_whisper.png" class="img-thumbnail"></img>
-			<h1 class="logo"><a href="index.html#home">Search</a></h1>
-			<form class="form-inline" role="form">
-        <div class="form-group">
-          <label class="sr-only" for="exampleTags">Tags</label>
-          <input id="keyword" type="text" class="form-control" id="exampleTags" placeholder="Tags">
-        </div> </form>
-			<form class="form-inline" role="form">
-        <div class="form-group">
-          <label class="sr-only" for="exampleCityStateLocation">City, State</label>
-          <input id="location" type="text" class="form-control" id="exampleCityStateLocation" placeholder="City, State">
-        </div> </form>
-          <a href="portfolio.html">Search Radius</a>   
-            <div>
-              <select class=" form-control" id="zoom">
-                <option value="3">Zoom: 1x</option>
-                <option value="4">Zoom: 2x</option>
-                <option value="5">Zoom: 3x</option>
-                <option value="6">Zoom: 4x</option>
-                <option value="10">Zoom: 5x</option>
-              </select>
-            </div>
-            <br>
-            <input class="btn btn-default" type="submit" value="Submit"onclick="standardDemo()">
-  			<br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        
-        <a href="#contact">Activate Live Feed</a>
-      <button type="button" class="btn btn-default btn-med" onclick="startFeed()">
-       <span class="glyphicon glyphicon-off"></span>
-      </button>
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <button type="button" class="btn btn-default btn-med" onclick="republicans()">
-          1
-        </button>
-        <button type="button" class="btn btn-default btn-med" onclick="suicide()">
-          2
-        </button>
-        <button type="button" class="btn btn-default btn-med" onclick="marijuana()">
-          3
-        </button>
-        <button type="button" class="btn btn-default btn-med" onclick="cake()">
-          4
-        </button>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-	
-			<a href="#"><i class="fa fa-facebook"></i></a>
-			<a href="#"><i class="fa fa-twitter"></i></a>
-			<a href="#"><i class="fa fa-dribbble"></i></a>
-			<a href="#"><i class="fa fa-envelope"></i></a>
-
-		</div>
-
-		<!-- Menu button -->
-		<div id="menuToggle"><i class="fa fa-bars"></i></div>
-	</nav>
-	
-	  <div id="map_canvas"></div>
-
-    
-  </body>
-  <footer>
-    <div>
-      <img id="logo" href="#" style="color: #533354" src="logo_whisper.png"></img>
-      <!--> <h1 href="#watch">Watch
-      </h1> -->
-
-    </div>
-  </footer>
-  
-
+ <div id="map-canvas" style="width: 1000px; height: 600px;"></div>
+  <div>
+    <input id="keyword" type="textbox" placeholder="Keyword">
+    <input id="location" type="textbox" placeholder="Location" value="Dallas">
+    <select id="zoom">
+      <option value="3">Zoom: 1x</option>
+      <option value="4">Zoom: 2x</option>
+      <option value="5">Zoom: 3x</option>
+      <option value="6">Zoom: 4x</option>
+      <option value="10">Zoom: 5x</option>
+  </select>
+    <input type="button" value="Encode" onclick="prepData()">
+    <input type="button" value="Stream" onclick="startFeed()">
+  </div>
+</body>
 </html>
-
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/main.js"></script>
-  <script src="assets/js/masonry.pkgd.min.js"></script>
-  <script src="assets/js/imagesloaded.js"></script>
-    <script src="assets/js/classie.js"></script>
-  <script src="assets/js/AnimOnScroll.js"></script>
-  <script>
-    new AnimOnScroll( document.getElementById( 'grid' ), {
-      minDuration : 0.4,
-      maxDuration : 0.7,
-      viewportFactor : 0.2
-    } );
-  </script>
