@@ -127,14 +127,14 @@ hr {
     color: #fff;
 }
 .menu a>i {
-    float: left;
+    float: right;
     display: inline-block;
     vertical-align: middle;
     text-align: left;
     width: 25px;
     font-size: 14px;
     line-height: 40px;
-    margin: 25px 2px;
+    margin: 25px 10px;
 }
 .menu-close {
     cursor: pointer;
